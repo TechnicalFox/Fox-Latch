@@ -29,7 +29,6 @@ if __name__ == '__main__':
     config = Configurator()
     make_page(config, 'index', '/')
     make_page(config, 'about', '/about')
-    make_page(config, '404', '/404')
     app = config.make_wsgi_app()
     server = make_server('0.0.0.0', 3333, app)
     server.serve_forever()
