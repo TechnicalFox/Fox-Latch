@@ -1,43 +1,23 @@
 import time
 import sys
 import RPi.GPIO as GPIO
+  
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(12, GPIO.OUT) 
+servo = GPIO.PWM(12, 200) #freq (Hz)
 
-class servo_test(object):
+while True:
+    servo.start(14)
+    time.sleep(1.2)
     
-    def __init__(self, pin):
-        self.pin = pin
-        self.commandList = [1000, 100, 1000, 100 \
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100,\
-        1000, 100, 1000, 100, 1000, 100, 1000, 100]
+    servo.ChangeDutyCycle(48)
+    time.sleep(1.2)
 
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.pin, GPIO.OUT)
-        self.microSecond = 0.000001
+#200Hz @ 5v:
+#1 top / full left = 48% 
+#2 top = 30%
+#3 top = 14%
+#full right = 9%
 
-    def pulse(self, direction):
-
-        GPIO.output(self.pin, GPIO.HIGH)
-        
-        if direction == 0: count = 0 else: count = 1
-        for pulseTime in commandList:
-            if count % 2 != 0:
-                GPIO.output(self.pin, GPIO.HIGH)
-            else:
-                GPIO.output(self.pin, GPIO.LOW)
-
-            time.sleep(pulseTime * self.microSecond)
-
-            count += 1
-
-            GPIO.output(self.pin, GPIO.HIGH)
-
-x = servo_test(12)
-x.pulse(0)
+servo.stop()
 GPIO.cleanup()
