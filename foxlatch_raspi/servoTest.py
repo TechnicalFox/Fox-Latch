@@ -8,10 +8,10 @@ servo = GPIO.PWM(12, 200) #freq (Hz)
 
 while True:
     servo.start(14)
-    time.sleep(1.2)
+    time.sleep(1)
     
     servo.ChangeDutyCycle(48)
-    time.sleep(1.2)
+    time.sleep(1)
 
 #200Hz @ 5v:
 #1 top / full left = 48% 
