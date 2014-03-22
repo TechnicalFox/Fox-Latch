@@ -9,7 +9,7 @@
 		<link
 		rel="icon"
 		type="image/x-ico"
-		href="../static/fox.ico" 
+		href="/fox.ico" 
 		/>
 		
 		<nav>
@@ -26,7 +26,7 @@
 	<body>
 		
 		<img
-			src="../static/foxlogo.png"
+			src="/foxlogo.png"
 			width="651.2"
 			height="526"
 			style="margin-left:auto; margin-right:auto; display:block;"

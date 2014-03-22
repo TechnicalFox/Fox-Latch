@@ -4,3 +4,6 @@ from pyramid.view import view_config
 @view_config(route_name='home', renderer='templates/mytemplate.pt')
 def my_view(request):
     return {'project': 'FoxLatch'}
+
+config.add_static_view(name='icon', path='static/fox.ico')
+config.add_static_view(name='logo', path='static/foxlogo.png')

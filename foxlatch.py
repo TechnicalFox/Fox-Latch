@@ -20,10 +20,7 @@ def view_about(request):
 
 def make_page(config, routeName, path):
     config.add_route(routeName, path)
-    if routeName == 'index':
-        config.add_view(view_index, route_name = routeName)
-    elif routeName == 'about':
-        config.add_view(view_about, route_name = routeName)
+    config.add_view(view_index, route_name = routeName)
 
 if __name__ == '__main__':
     config = Configurator()
