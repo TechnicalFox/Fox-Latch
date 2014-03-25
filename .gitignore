@@ -36,7 +36,7 @@ nosetests.xml
 .pydevproject
 
 # Databases
-.sqlite3
+*.sqlite3
 
 # Virtualenv starter
 startenv
