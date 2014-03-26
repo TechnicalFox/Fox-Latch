@@ -3,7 +3,7 @@ Fox Latch: setup file
 
 Objective: Have foxlatch easily setup with a single python file.
 
-This implimentation TechnicalFox.
+This implementation TechnicalFox.
 """
 import os
 import sys
@@ -50,8 +50,8 @@ if __name__ == "__main__":
     if not os.geteuid() == 0: sys.exit('foxlatch_setup.py must be run as root')
     prompt = None
     while prompt != 'y' and prompt != 'n' and prompt != 'Y' and prompt != 'N':
-        if prompt != None: print("Please type upper or lower case 'y' or 'n' only.")
-        prompt = raw_input("This program installs ssh, changes ssh settings, and downloads files. Are you sure you want to do this? y/n")
+        if prompt != None: prompt = raw_input("Please type upper or lower case 'y' or 'n' only.")
+        else: prompt = raw_input("This program installs ssh, changes ssh settings, and downloads files. Are you sure you want to do this? y/n")
     if prompt == 'y' or prompt == 'Y':
         foxlatch = foxlatch_setup()
         print("Setting up ssh...")
