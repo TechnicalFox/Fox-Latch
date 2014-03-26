@@ -61,5 +61,7 @@ if __name__ == "__main__":
         print("Downloading foxlatch...")
         foxlatch.get_foxlatch()
         print("Setup complete.")
+        pause = raw_input("Press enter to reboot.")
+        os.system("sudo reboot")
     else: print("Setup aborted.")
     sys.exit()
