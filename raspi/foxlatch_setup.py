@@ -47,7 +47,7 @@ Asks user if sure about running, then sets up foxlatch
 using the foxlatch_setup class.
 """
 if __name__ == "__main__":
-    if not os.geteuid() == 0: sys.exit('foxlatch_setup.py must be run as root')
+    if not os.geteuid() == 0: sys.exit('foxlatch_setup.py must be run as root.')
     prompt = None
     while prompt != 'y' and prompt != 'n' and prompt != 'Y' and prompt != 'N':
         if prompt != None: prompt = raw_input("Please type upper or lower case 'y' or 'n' only.")
@@ -60,7 +60,15 @@ if __name__ == "__main__":
         foxlatch.add_key()
         print("Downloading foxlatch...")
         foxlatch.get_foxlatch()
+        
+        status = open("/home/pi/.foxlatch/status", "w")
+        status.write("False")
+        status.close()
+
+        setup = open("/home/pi/.foxlatch/setup_complete", "w")
+        setup.close()
         print("Setup complete.")
+
         pause = raw_input("Press enter to reboot.")
         os.system("sudo reboot")
     else: print("Setup aborted.")
