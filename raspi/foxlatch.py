@@ -34,10 +34,13 @@ class foxlatch(object):
         self.servo = GPIO.PWM(12, 200)
         
         status = open("/home/pi/.foxlatch/status", "r")
+        #True when locked
         self.lock_status = status.readline()
         status.close()
         
-        self.door_status = False #check hall sensor
+        #True when closed
+        if GPIO.input(11) == 1: self.door_status = False
+        else: self.door_status = True
 
     """
     Writes a boolean to a status file.
@@ -50,21 +53,31 @@ class foxlatch(object):
     
     """ Prints the status of lock and door to terminal. """
     def print_status(self):
+        GPIO.cleanup()
         sys.exit(self.lock_status + " " + self.door_status)
 
     """ Locks the door if unlocked, unlocks if locked. Only when door is closed. """
     def toggle_lock(self):
         if self.door_status:
             if self.lock_status:
-                #unlock
+                #rough estimate, needs testing
+                servo.start(14)
+                time.sleep(1)
+                servo.stop()
                 print("Door unlocked.")
             else:
-                #lock
+                #rough estimate, needs testing
+                servo.start(35)
+                time.sleep(1)
+                servo.stop()
                 print("Door locked.")
-        else: sys.exit("Can't toggle lock when door is open.")
+        else:
+            GPIO.cleanup()
+            sys.exit("Can't toggle lock when door is open.")
         
         self.lock_status = not self.lock_status
         update_status(self)
+        GPIO.cleanup()
         sys.exit()
 
 ##########################
@@ -82,4 +95,6 @@ if __name__ == "__main__":
     try:
         if sys.argv[1] == 'stat': foxlatch.print_status()
         elif sys.argv[1] == 'lock': foxlatch.toggle_lock()
-    except IndexError: sys.exit("You must specify a command ('stat' or 'lock').")
+    except IndexError:
+        GPIO.cleanup()
+        sys.exit("You must specify a command ('stat' or 'lock').")
