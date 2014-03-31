@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'signups',
+    'fox',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,5 +84,8 @@ STATIC_URL = '/static/'
 
 # Template location
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(BASE_DIR), "static", "templates"),
+    os.path.join(BASE_DIR, "static", "templates"),
 )
+
+# Provide our get_profile()
+AUTH_PROFILE_MODULE = 'fox.Fox'
