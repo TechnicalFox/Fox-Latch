@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-class Fox(models.Model):    
+class Fox(models.Model):
     user = models.OneToOneField(User)
-    ip = models.GenericIPAddressField(protocol='IPv4', blank=True, null=True)
+    ip = '0.0.0.0' #models.GenericIPAddressField(protocol='IPv4', blank=True, null=True)
 
     def __unicode__(self):
         return self.ip

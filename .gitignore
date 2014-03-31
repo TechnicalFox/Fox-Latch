@@ -40,3 +40,6 @@ nosetests.xml
 
 # Virtualenv starter
 startenv
+
+# Filesystem crap
+.nfs*
