@@ -7,16 +7,16 @@
 		<title>Fox Latch: About</title>
 		
 		<link
-		rel="icon"
-        type="image/x-ico"
-        href="http://www.csh.rit.edu:3333/fox_icon.ico" 
+		rel="shortcut icon"
+        href="/static/favicon.ico" 
 		/>
 		
 		<nav>
             <ul style="list-style-type:none; margin:0; padding:0;">
                 <li style="display:inline;"> 
-					<a href="/index.html">Home</a> 
-					<a href="/about.html">About</a>
+					<a href="/">Home</a> 
+                    <a href="/about">About</a>
+                    <a href="/register">Register</a>
 				</li>	
             </ul>
         </nav>
@@ -26,7 +26,7 @@
 	<body>
 		
 		<img
-			src="/fox_logo.png"
+			src="/static/fox_logo.png"
 			width="651.2"
 			height="526"
 			style="margin-left:auto; margin-right:auto; display:block;"
@@ -35,11 +35,11 @@
 		<div style="text-align:left;">
 			<h2 style="text-decoration:underline;">About Fox Latch:</h2>
 			<p>
-				Fox Latch is a web app built on Pyramid (Python) that is used to <br>
+				Fox Latch is a web app built on Django (Python) that is used to <br>
 				remotely lock and unlock doors using a servo. It also checks the <br>
 				state of the door and lock using the servo position and a hall <br>
 				effect sensor. These are connected to a Raspberry Pi and broadcast <br>
-				behind a security system: webauth.
+				behind built in Django auth.
 			<p>
 			<h2 style="text-decoration:underline;">Contributors:</h2>
 			<p>

@@ -82,6 +82,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Static files not in an app
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static',
+)
+
 # Template location
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "static", "templates"),
