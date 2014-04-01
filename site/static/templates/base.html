@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    {% block mainHead %}
+        <!--Code by TechnicalFox-->
+
+        <link rel="shortcut icon" href="/static/favicon.ico"/>
+    {% endblock %}
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block mainBody %}
+        <nav>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+        <li style="display:inline;">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            {% if user.is_authenticated %} <a href="/profile/">Profile</a> {% else %} <a href="/register/">Register</a> {% endif %}
+            {% if user.is_authenticated %} <a href="/logout/">Logout</a>   {% else %} <a href="/login/">Login</a>       {% endif %}
+        </li>
+        </ul>
+        </nav>
+
+        <img src="/static/fox_logo.png" width="651.2" height="526" style="margin-left:auto; margin-right:auto; display:block;"/>
+    {% endblock %}
+    {% block body %}{% endblock %}
+</body>
+</html>

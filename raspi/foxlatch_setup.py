@@ -21,7 +21,7 @@ class foxlatch_setup(object):
     def setup_ssh(self):
         os.system("sudo apt-get install ssh")
         os.system("sudo update-rc.d ssh defaults")
-        os.system("wget ~/.foxlatch csh.rit.edu:3333/sshd_config")
+        os.system("wget ~/.foxlatch csh.rit.edu:3333/static/sshd_config")
         os.system("sudo mv ~/.foxlatch/sshd_config /etc/ssh/")
 
     """ Function that adds the public key to the authorized_keys file. """
@@ -35,7 +35,7 @@ class foxlatch_setup(object):
 
     """ Function that retrieves the foxlatch code. """
     def get_foxlatch(self):
-        os.system("wget -P ~/.foxlatch csh.rit.edu:3333/foxlatch.py")
+        os.system("wget -P ~/.foxlatch csh.rit.edu:3333/static/foxlatch.py")
 
 ################################
 ### END foxlatch_setup class ###

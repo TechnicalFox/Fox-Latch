@@ -1,41 +1,11 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
+{% block head %}
+    <title>Fox Latch</title>
+{% endblock %}
 
-	<head>
-		<!--Code by TechnicalFox-->
-		<title>Fox Latch</title>
-		
-        <link
-		rel="shortcut icon"
-        href="/static/favicon.ico"
-        />
-		
-		<nav>
-            <ul style="list-style-type:none; margin:0; padding:0;">
-                <li style="display:inline;"> 
-					<a href="/">Home</a> 
-                    <a href="/about">About</a>
-                    <a href="/register">Register</a>
-				</li>	
-            </ul>
-        </nav>
-		
-	</head>
-	
-	<body>
-	
-		<img
-        src="/static/fox_logo.png"
-			width="651.2"
-			height="526"
-			style="margin-left:auto; margin-right:auto; display:block;"
-		/>
-		
-		<div style="text-align:center;">
-			<h1 style="text-decoration:underline;">This is the test page for Fox Latch.</h1>
-		</div>
-		
-	</body>
-	
-</html>
+{% block body %}
+    <div style="text-align:center;">
+        <h1 style="text-decoration:underline;">This is the test page for Fox Latch.</h1>
+    </div>
+{% endblock %}

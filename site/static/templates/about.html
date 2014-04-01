@@ -1,58 +1,30 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
+{% block head %}
+    <title>Fox Latch: About</title>
+{% endblock %}
 
-	<head>
-		<!--Code by TechnicalFox-->
-		<title>Fox Latch: About</title>
-		
-		<link
-		rel="shortcut icon"
-        href="/static/favicon.ico" 
-		/>
-		
-		<nav>
-            <ul style="list-style-type:none; margin:0; padding:0;">
-                <li style="display:inline;"> 
-					<a href="/">Home</a> 
-                    <a href="/about">About</a>
-                    <a href="/register">Register</a>
-				</li>	
-            </ul>
-        </nav>
-		
-	</head>
-	
-	<body>
-		
-		<img
-			src="/static/fox_logo.png"
-			width="651.2"
-			height="526"
-			style="margin-left:auto; margin-right:auto; display:block;"
-		/>
-		
-		<div style="text-align:left;">
-			<h2 style="text-decoration:underline;">About Fox Latch:</h2>
-			<p>
-				Fox Latch is a web app built on Django (Python) that is used to <br>
-				remotely lock and unlock doors using a servo. It also checks the <br>
-				state of the door and lock using the servo position and a hall <br>
-				effect sensor. These are connected to a Raspberry Pi and broadcast <br>
-				behind built in Django auth.
-			<p>
-			<h2 style="text-decoration:underline;">Contributors:</h2>
-			<p>
-				<strong>Computer Science House @ RIT:</strong> Hosting of web server <br>
-				<strong>Emily Feng:</strong> All artistic contributions <br>
-				<strong>Jim Craveiro:</strong> Program/site design and implementation
-            </p>
-        </div>
+{% block body %}
+    <div style="text-align:left;">
+        <h2 style="text-decoration:underline;">About Fox Latch:</h2>
+        <p>
+            Fox Latch is a web app built on Django (Python) that is used to <br>
+            remotely lock and unlock doors using a servo. It also checks the <br>
+            state of the door and lock using the servo position and a hall <br>
+            effect sensor. These are connected to a Raspberry Pi and broadcast <br>
+            behind built in Django auth.
+        <p>
+        <h2 style="text-decoration:underline;">Contributors:</h2>
+        <p>
+            <strong>Computer Science House @ RIT:</strong> Hosting of web server <br>
+            <strong>Emily Feng:</strong> All artistic contributions <br>
+            <strong>Jim Craveiro:</strong> Program/site design and implementation <br>
+            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+            <strong>email:</strong> technicalfox@csh.rit.edu
+        </p>
+    </div>
         
-        <div style="text-align:right;">
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
-        </div>
-
-	</body>
-	
-</html>
+    <div style="text-align:right;">
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
+    </div>
+{% endblock %}

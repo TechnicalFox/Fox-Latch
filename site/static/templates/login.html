@@ -1,42 +1,16 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
+{% block head %}
+    <title>Fox Latch: Login</title>
+{% endblock %}
 
-	<head>
-		<!--Code by TechnicalFox-->
-		<title>Fox Latch: Login</title>
-		
-		<link
-		rel="shortcut icon"
-        href="/static/favicon.ico"
-		/>
-		
-		<nav>
-            <ul style="list-style-type:none; margin:0; padding:0;">
-                <li style="display:inline;"> 
-					<a href="/">Home</a> 
-                    <a href="/about">About</a>
-                    <a href="/login">Login</a>
-				</li>	
-            </ul>
-        </nav>
-		
-	</head>
-	
-	<body>
-	
-		<img
-        src="/static/fox_logo.png"
-			width="651.2"
-			height="526"
-			style="margin-left:auto; margin-right:auto; display:block;"
-		/>
-
-    <form method='POST', action=''>
-        <input type='IPv4'>
-          
-        <input type='submit'>
-
-	</body>
-	
-</html>
+{% block body %}
+    <div>
+        <form action="" method="post">
+        {% csrf_token %}
+        {% if form.errors %}<h3>Please correct the following fields:</h3>{% endif %}
+        <p>Username:        {{ form.username }}  {% if form.username.errors %}  {{ form.username.errors }}  </p>{% endif %}
+        <p>Password:        {{ form.password }}  {% if form.password.errors %}  {{ form.password.errors }}  </p>{% endif %}
+        <p><input type="submit" /></p>
+    </div>
+{% endblock %}

@@ -95,3 +95,9 @@ TEMPLATE_DIRS = (
 
 # Provide our get_profile()
 AUTH_PROFILE_MODULE = 'fox.Fox'
+
+# Login url
+LOGIN_URL = "/login/"
+
+# Login redirect url
+LOGIN_REDIRECT_URL = "/profile/"
