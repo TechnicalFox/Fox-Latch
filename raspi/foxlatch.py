@@ -35,7 +35,8 @@ class foxlatch(object):
         
         status = open("/home/pi/.foxlatch/status", "r")
         #True when locked
-        self.lock_status = status.readline()
+        if status.readline() == '1': self.lock_status = False
+        else: self.lock_status = True
         status.close()
         
         #True when closed
@@ -48,7 +49,8 @@ class foxlatch(object):
     """
     def update_status(self):
         status = open("/home/pi/.foxlatch/status", "w")
-        status.write( str(self.lock_status) )
+        if self.lock_status: status.write('0')
+        else: status.write('1')
         status.close()
     
     """ Prints the status of lock and door to terminal. """
@@ -61,22 +63,22 @@ class foxlatch(object):
         if self.door_status:
             if self.lock_status:
                 #rough estimate, needs testing
-                servo.start(14)
+                self.servo.start(14)
                 time.sleep(1)
-                servo.stop()
+                self.servo.stop()
                 print("Door unlocked.")
             else:
                 #rough estimate, needs testing
-                servo.start(35)
+                self.servo.start(35)
                 time.sleep(1)
-                servo.stop()
+                self.servo.stop()
                 print("Door locked.")
         else:
             GPIO.cleanup()
             sys.exit("Can't toggle lock when door is open.")
         
         self.lock_status = not self.lock_status
-        update_status(self)
+        self.update_status()
         GPIO.cleanup()
         sys.exit()
 

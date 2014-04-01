@@ -61,7 +61,7 @@ if __name__ == "__main__":
         foxlatch.get_foxlatch()
         
         status = open("/home/pi/.foxlatch/status", "w")
-        status.write("False")
+        status.write("1")
         status.close()
 
         setup = open("/home/pi/.foxlatch/setup_complete", "w")
