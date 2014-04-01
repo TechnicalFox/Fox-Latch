@@ -54,7 +54,7 @@ class foxlatch(object):
     """ Prints the status of lock and door to terminal. """
     def print_status(self):
         GPIO.cleanup()
-        sys.exit(self.lock_status + " " + self.door_status)
+        sys.exit(str(self.lock_status) + " " + str(self.door_status))
 
     """ Locks the door if unlocked, unlocks if locked. Only when door is closed. """
     def toggle_lock(self):
