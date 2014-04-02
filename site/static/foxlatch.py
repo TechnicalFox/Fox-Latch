@@ -35,7 +35,8 @@ class foxlatch(object):
         
         status = open("/home/pi/.foxlatch/status", "r")
         #True when locked
-        self.lock_status = status.readline()
+        if status.readline() == '1': self.lock_status = False
+        else: self.lock_status = True
         status.close()
         
         #True when closed
@@ -43,40 +44,43 @@ class foxlatch(object):
         else: self.door_status = True
 
     """
-    Writes a boolean to a status file.
-    'True' if the door is locked, 'False' if not.
+    Writes an integer to a status file.
+    0 if the door is locked, 1 if not.
     """
     def update_status(self):
         status = open("/home/pi/.foxlatch/status", "w")
-        status.write( str(self.lock_status) )
+        if self.lock_status: status.write('0')
+        else: status.write('1')
         status.close()
     
     """ Prints the status of lock and door to terminal. """
     def print_status(self):
         GPIO.cleanup()
-        sys.exit(self.lock_status + " " + self.door_status)
+        if self.door_status: door = "Door is closed"
+        else: door = "Door is open, can't toggle lock"
+        if self.lock_status: lock = " and locked."
+        else: lock = "."
+        sys.exit(door + lock)
 
     """ Locks the door if unlocked, unlocks if locked. Only when door is closed. """
     def toggle_lock(self):
         if self.door_status:
             if self.lock_status:
                 #rough estimate, needs testing
-                servo.start(14)
-                time.sleep(1)
-                servo.stop()
-                print("Door unlocked.")
+                self.servo.start(14)
+                time.sleep(0.5)
+                self.servo.stop()
             else:
                 #rough estimate, needs testing
-                servo.start(35)
-                time.sleep(1)
-                servo.stop()
-                print("Door locked.")
+                self.servo.start(35)
+                time.sleep(0.5)
+                self.servo.stop()
         else:
             GPIO.cleanup()
-            sys.exit("Can't toggle lock when door is open.")
+            sys.exit()
         
         self.lock_status = not self.lock_status
-        update_status(self)
+        self.update_status()
         GPIO.cleanup()
         sys.exit()
 
