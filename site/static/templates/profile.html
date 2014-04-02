@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <title>Fox Latch: {{ user.name }}</title>
+    <title>Fox Latch: {{ user.username }}</title>
 {% endblock %}
 
 {% block body %}
-    <p>IP: {{ fox.ip }}</p>
+    <p>RasPi IP: {{ fox.ip }}</p>
     <p>Status: {{ stat }}</p>
-    <a href="/profile/"><input type="button" value="Refresh (update status)"></a>
+    <a href="/profile/"><input type="button" value="Update Status (refresh)"></a>
     <a href="/togglelock/"><input type="button" value="Toggle Lock"></a>
 {% endblock %}

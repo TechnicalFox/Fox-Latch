@@ -35,6 +35,7 @@ def Profile(request):
     raspi = 'pi@' + request.user.fox.ip
     out = subprocess.Popen(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'stat'], stderr=subprocess.PIPE)
     stat = out.stderr.read()
+    if stat == "Door is open, can't toggle lock and locked.\n": stat = "Your door is open and locked... fix that!\n"
 
     context = {'fox': fox, 'stat': stat}
 
@@ -67,8 +68,7 @@ def LogoutRequest(request):
 @login_required
 def ToggleLock(request):
     raspi = 'pi@' + request.user.fox.ip
-    out = subprocess.Popen(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'lock'], stderr=subprocess.PIPE)
-    stat = out.stderr.read()
+    subprocess.Popen(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'lock'], stderr=subprocess.PIPE)
     
     return HttpResponseRedirect('/profile/')
 
