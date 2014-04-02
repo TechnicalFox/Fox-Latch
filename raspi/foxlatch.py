@@ -64,13 +64,13 @@ class foxlatch(object):
             if self.lock_status:
                 #rough estimate, needs testing
                 self.servo.start(14)
-                time.sleep(1)
+                time.sleep(0.5)
                 self.servo.stop()
                 print("Door unlocked.")
             else:
                 #rough estimate, needs testing
                 self.servo.start(35)
-                time.sleep(1)
+                time.sleep(0.5)
                 self.servo.stop()
                 print("Door locked.")
         else:
