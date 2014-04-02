@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^login/$', 'fox.views.LoginRequest'),
     url(r'^logout/$', 'fox.views.LogoutRequest'),
     url(r'^profile/$', 'fox.views.Profile'),
+    url(r'^togglelock/$', 'fox.views.ToggleLock'),
 )

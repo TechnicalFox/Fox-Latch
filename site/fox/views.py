@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from fox.forms import RegistrationForm, LoginForm
 from fox.models import Fox
 from django.contrib.auth import authenticate, login, logout
-import os
+import subprocess
 
 def FoxRegistration(request):
     if request.user.is_authenticated():
@@ -31,10 +31,12 @@ def FoxRegistration(request):
 @login_required
 def Profile(request):
     fox = request.user.get_profile
-    context = {'fox': fox}
-    
-    #command = "ssh pi@" +   + " sudo python /home/pi/.foxlatch/foxlatch.py lock > /users/u21/technicalfox/Projects/FoxLatch/site/static/stat.txt"
-    #os.system(command)
+
+    raspi = 'pi@' + request.user.fox.ip
+    out = subprocess.Popen(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'stat'], stderr=subprocess.PIPE)
+    stat = out.stderr.read()
+
+    context = {'fox': fox, 'stat': stat}
 
     return render_to_response('profile.html', context, context_instance=RequestContext(request))
 
@@ -64,13 +66,11 @@ def LogoutRequest(request):
 
 @login_required
 def ToggleLock(request):
-    fox = request.user.get_profile
-    context = {'fox': fox}
-
-    command = "ssh pi@" + fox.ip + " sudo python /home/pi/.foxlatch/foxlatch.py lock > /users/u21/technicalfox/Projects/FoxLatch/site/static/response.txt"
-    os.system(command)
-
-    return render_to_response('profile.html', context, context_instance=RequestContext(request))
+    raspi = 'pi@' + request.user.fox.ip
+    out = subprocess.Popen(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'lock'], stderr=subprocess.PIPE)
+    stat = out.stderr.read()
+    
+    return HttpResponseRedirect('/profile/')
 
 def index_view(request):
     return render_to_response("index.html", locals(), context_instance=RequestContext(request))

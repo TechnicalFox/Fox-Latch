@@ -6,6 +6,7 @@
 
 {% block body %}
     <p>IP: {{ fox.ip }}</p>
-    <input type="button" value="Update Status" onclick="">
-    <input type="button" value="Toggle Lock" onclick="">
+    <p>Status: {{ stat }}</p>
+    <a href="/profile/"><input type="button" value="Refresh (update status)"></a>
+    <a href="/togglelock/"><input type="button" value="Toggle Lock"></a>
 {% endblock %}
