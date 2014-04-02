@@ -68,7 +68,7 @@ def LogoutRequest(request):
 @login_required
 def ToggleLock(request):
     raspi = 'pi@' + request.user.fox.ip
-    subprocess.Popen(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'lock'], stderr=subprocess.PIPE)
+    subprocess.call(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'lock'])
     
     return HttpResponseRedirect('/profile/')
 
