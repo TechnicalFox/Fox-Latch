@@ -12,7 +12,9 @@ ALPHA BUILD COMPLETE: 1/2/2014
 
 Working site, user registration, installer, and controller.
 
+
 Current security holes:
+-----------------------
 
   -A user can be created with the same IP as another, then
    access their lock.
@@ -27,7 +29,9 @@ Current security holes:
    Resolution: Add SSL cert capability, use Nginx or Apache to
                wrap web app with, unless Django has this ability.
 
+
 Current bugs:
+-------------
 
   -Submitting a login form with nothing in it returns an error.
    Resolution: Use built in Django auth/validation to return
@@ -45,17 +49,26 @@ Current bugs:
   -Possible bug: May not ssh correctly on first time due to known
    hosts check.
    Resolution: Ignore known_hosts?
+
    
 Things to impliment for beta:
+-----------------------------
 
   -SSL: jesus christ this needs to be up before it gets put on a door
+
   -Change IP form
+
   -Change password form
+
   -Permanent domain: foxlatch.csh.rit.edu
+
   -SHA-2 256 bit key generation for new IPs
+
   -Dissallow same ip for different account unless key used
 
+
 Things to impliment for full release:
+-------------------------------------
 
   -Dynamically check the status of the door for display on the page
    (could pose a problem seeing as what gets the status is the main
