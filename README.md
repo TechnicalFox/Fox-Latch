@@ -8,13 +8,12 @@ effect sensor. These are connected to a Raspberry Pi and broadcast
 behind the built in Django auth.
 
 ALPHA BUILD COMPLETE: 1/2/2014
-==============================
+--------------------------------------------------
 
 Working site, user registration, installer, and controller.
 
 
-Current security holes:
------------------------
+###Current security holes:
 
   -A user can be created with the same IP as another, then
    access their lock.
@@ -30,8 +29,7 @@ Current security holes:
                wrap web app with, unless Django has this ability.
 
 
-Current bugs:
--------------
+###Current bugs:
 
   -Submitting a login form with nothing in it returns an error.
    Resolution: Use built in Django auth/validation to return
@@ -51,8 +49,7 @@ Current bugs:
    Resolution: Ignore known_hosts?
 
    
-Things to impliment for beta:
------------------------------
+###Things to impliment for beta:
 
   -SSL: jesus christ this needs to be up before it gets put on a door
 
@@ -67,9 +64,19 @@ Things to impliment for beta:
   -Dissallow same ip for different account unless key used
 
 
-Things to impliment for full release:
--------------------------------------
+###Things to impliment for full release:
 
   -Dynamically check the status of the door for display on the page
    (could pose a problem seeing as what gets the status is the main
    program, which could cause some GPIO conflict, but I am unsure)
+   
+  -Use CSH Webauth for authentication instead of Django auth
+   (this combined with ssl for the actual site will add more security,
+   should be able to wrap some sort of output from webauth in an object
+   with the IPv4 field instead of the current implimentation that wraps
+   a Django auth user object and an IPv4 field in an object)
+
+  -IPv6 (if you can even call ssh on IPv6 addresses)
+  
+  -Hostnames (could pose security threat if not sanitized correctly:
+   injection to subprocess.call/subprocess.Popen in Python)
