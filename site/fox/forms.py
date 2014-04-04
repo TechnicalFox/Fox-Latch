@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from fox.models import Fox
+from django.contrib.auth import authenticate
 
 class RegistrationForm(ModelForm):
     username = forms.CharField(label=(u'User Name'))
@@ -39,3 +40,23 @@ class RegistrationForm(ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label=(u'User Name'))
     password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        try:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise forms.ValidationError("That username does not exist in the database.")
+        return username
+
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        try:
+            username = self.cleaned_data['username']
+        except KeyError:
+            pass
+        else:
+            fox = authenticate(username=username, password=password)
+            if fox is None:
+                raise forms.ValidationError("Password incorrect.")
+        return password

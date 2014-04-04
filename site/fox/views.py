@@ -53,8 +53,9 @@ def LoginRequest(request):
             if fox is not None:
                 login(request, fox)
                 return HttpResponseRedirect('/profile/')
-            else:
-                return render_to_response('login.html', {'form': form}, context_instance=RequestContext(request))
+       
+        return render_to_response('login.html', {'form': form}, context_instance=RequestContext(request))
+            
     else:
         # show login form
         form = LoginForm()
