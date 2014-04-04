@@ -3,7 +3,7 @@ Fox-Latch
 
 ######Fox Latch is a web app built on Django (Python) that is used to remotely lock and unlock doors using a servo. It also checks the state of the door and lock using the servo position and a hall effect sensor. These are connected to a Raspberry Pi and broadcast behind the built in Django auth.
 
-ALPHA BUILD COMPLETE: 1/2/2014
+ALPHA BUILD COMPLETE: 4/2/2014
 ------------------------------
 
 ######Working site, user registration, installer, and controller.
