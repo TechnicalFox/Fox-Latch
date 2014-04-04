@@ -13,6 +13,14 @@ class RegistrationForm(ModelForm):
         model = Fox
         exclude = ('user',)
 
+    def clean_ip(self):
+        ip = self.cleaned_data['ip']
+        try:
+            Fox.objects.get(ip=ip)
+        except Fox.DoesNotExist:
+            return ip
+        raise forms.ValidationError("That ip is already taken, please select another.")
+    
     def clean_username(self):
         username = self.cleaned_data['username']
         try:
