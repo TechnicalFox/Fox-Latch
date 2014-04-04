@@ -6,7 +6,7 @@ Fox-Latch
 ALPHA BUILD COMPLETE: 4/2/2014
 ------------------------------
 
-######Working site, user registration, installer, and controller.
+######Working site (user registration, login, and profile), installer, and controller.
 ######Strikethroughs are completed tasks.
 
 
@@ -19,7 +19,7 @@ ALPHA BUILD COMPLETE: 4/2/2014
 
 ###Current bugs:
 
-  -Submitting a login form with nothing in it returns an error. Resolution: Use built in Django auth/validation to return errors if fields are empty (just like with user registration).
+  -~~Submitting a login form with nothing in it returns an error. Resolution: Use built in Django auth/validation to return errors if fields are empty (just like with user registration).~~
 
   -When called, if completed successfully, the raspi assumes the servo turned even if servo is not connected. This doesn't pose too big of a problem, because when reconnected the servo may be in unlocked state even though it reads as locked. When next called it will not move but the status will change back to the correct status. Resolution: ???
    
