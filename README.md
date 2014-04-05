@@ -30,7 +30,7 @@ ALPHA BUILD COMPLETE: 4/2/2014
 
   -SSL: jesus christ this needs to be up before it gets put on a door
 
-  -Change IP form
+  -~~Change IP form~~
 
   -Change password form
 
