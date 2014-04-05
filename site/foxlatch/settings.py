@@ -90,7 +90,7 @@ STATICFILES_DIRS = (
 
 # Template location
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "static", "templates"),
+    os.path.join(BASE_DIR, "templates"),
 )
 
 # Provide our get_profile()

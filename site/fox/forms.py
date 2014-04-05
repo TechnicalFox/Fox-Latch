@@ -60,3 +60,17 @@ class LoginForm(forms.Form):
             if fox is None:
                 raise forms.ValidationError("Password incorrect.")
         return password
+
+class ChangeIPForm(ModelForm):
+    
+    class Meta:
+        model = Fox
+        exclude = ('user',)
+
+    def clean_ip(self):
+        ip = self.cleaned_data['ip']
+        try:
+            Fox.objects.get(ip=ip)
+        except Fox.DoesNotExist:
+            return ip
+        raise forms.ValidationError("That ip is already taken, please select another.")

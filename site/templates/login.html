@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Fox Latch: Login</title>
+{% endblock %}
+
+{% block body %}
+    <div>
+        <form action="" method="post">{% csrf_token %}
+        {% if form.errors %}<h3>Please correct the following fields:</h3>{% endif %}
+        <p>Username:        {{ form.username }}  {% if form.username.errors %}  {{ form.username.errors }} {% endif %}</p>
+        <p>Password:        {{ form.password }}  {% if form.password.errors %}  {{ form.password.errors }} {% endif %}</p>
+        <p><input type="submit" /></p>
+    </div>
+{% endblock %}

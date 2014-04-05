@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response, RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from fox.forms import RegistrationForm, LoginForm
+from fox.forms import RegistrationForm, LoginForm, ChangeIPForm
 from fox.models import Fox
 from django.contrib.auth import authenticate, login, logout
 import subprocess
@@ -29,18 +29,25 @@ def FoxRegistration(request):
         return render_to_response('register.html', context, context_instance=RequestContext(request))
 
 @login_required
-def Profile(request):
+def Profile(request): 
+    if request.method == 'POST':
+        form = ChangeIPForm(request.POST)
+        if form.is_valid():
+            request.user.fox.ip = form.cleaned_data['ip']
+            request.user.fox.save()
+    else:
+        form = ChangeIPForm()
+    
     fox = request.user.get_profile
-
     raspi = 'pi@' + request.user.fox.ip
+    
     out = subprocess.Popen(['ssh', raspi, 'sudo', 'python', '/home/pi/.foxlatch/foxlatch.py', 'stat'], stderr=subprocess.PIPE)
     stat = out.stderr.read()
     if stat == "Door is open, can't toggle lock and locked.\n": stat = "Your door is open and locked... fix that!\n"
-
-    context = {'fox': fox, 'stat': stat}
-
-    return render_to_response('profile.html', context, context_instance=RequestContext(request))
-
+    
+    context = {'fox': fox, 'stat': stat, 'form': form}
+    return render_to_response('profile.html', context, context_instance=RequestContext(request)) 
+    
 def LoginRequest(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/profile/')

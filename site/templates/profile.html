@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Fox Latch: {{ user.username }}</title>
+{% endblock %}
+
+{% block body %}
+    <div>
+        <p>RasPi IP: {{ fox.ip }}</p>
+        <p>Status: {{ stat }}</p>
+        <a href="/profile/"><input type="button" value="Update Status (refresh)"></a>
+        <a href="/togglelock/"><input type="button" value="Toggle Lock"></a>
+    </div>
+    <div>
+        <form action="" method="post">{% csrf_token %}
+        {% if form.errors %}<h3><br>Please correct the following fields:</h3>{% endif %}
+        <p>{% if not form.errors %}<br>{% endif %}Change IP Address: {{ form.ip }} {% if form.ip.errors %} {{ form.ip.errors }}</p>{% endif %}
+        <p><input type="submit" /></p>
+    </div>
+{% endblock %}
