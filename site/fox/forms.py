@@ -74,3 +74,20 @@ class ChangeIPForm(ModelForm):
         except Fox.DoesNotExist:
             return ip
         raise forms.ValidationError("That ip is already taken, please select another.")
+
+class ChangePasswordForm(forms.Form):
+    password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
+    newPassword = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
+    verifyNewPassword = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
+
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        try:
+            username = self.cleaned_data['username']
+        except KeyError:
+            pass
+        else:
+            fox = authenticate(username=username, password=password)
+            if fox is None:
+                raise forms.ValidationError("Password incorrect.")
+        return password
