@@ -14,7 +14,7 @@ ALPHA BUILD COMPLETE: 4/2/2014
 
   -~~A user can be created with the same IP as another, then access their lock. Resolution: Generate a SHA-2 256 bit key associated with the first instance of the IP, so that duplicate IP usage can only be achieved with the key. (this allows for roommates to have seperate accounts but still access the same door securley).~~
 
-  -Not using ssl (https) so all passwords and such are submitted to the server via plaintext. Resolution: Add SSL cert capability, use Nginx or Apache to wrap web app with, unless Django has this ability.
+  -Not using ssl (https) so all passwords and such are submitted to the server via plaintext. Resolution: Add SSL cert capability. Will be using Apache and mod_wsgi.
 
 
 ###Current bugs:
@@ -23,18 +23,18 @@ ALPHA BUILD COMPLETE: 4/2/2014
 
   -When called, if completed successfully, the raspi assumes the servo turned even if servo is not connected. This doesn't pose too big of a problem, because when reconnected the servo may be in unlocked state even though it reads as locked. When next called it will not move but the status will change back to the correct status. Resolution: ???
    
-  -Possible bug: May not ssh correctly on first time due to known hosts check. Resolution: Ignore known_hosts?
+  -When called on a new ip, it hangs on whether or not to add it to known hosts indefinately. If it is a wrong address, but still a system configured for ssh, then it will hang on the password prompt (if manually passed by known hosts prompt) indefinately. Resolution: Use a python module to handle ssh instead of subprocess, possibly paramiko.
+  
+  -When setup file is run more than once it writes copies of files to the .foxlatch directory with different names (possibly also in /etc/ssh), and appends the publickey to the authorized\_keys file reguardless of whether or not it's there. Resolution: Fix the check to make sure publickey is not already contained in the authorized\_keys file, and have it overwrite old files in the .foxlatch directory.
 
    
 ###Things to impliment for beta:
 
-  -SSL: jesus christ this needs to be up before it gets put on a door
+  -Permanent domain (foxlatch.csh.rit.edu) & SSL: technically one task, can be done using Apache and mod_wsgi
 
   -~~Change IP form~~
 
   -Change password form
-
-  -Permanent domain: foxlatch.csh.rit.edu
 
   -SHA-2 256 bit key generation for new IPs
 
